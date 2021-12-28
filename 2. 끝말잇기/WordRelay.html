@@ -9,21 +9,31 @@
 </head>
 <body>
     <div id="root">
-        <div>{{word}}</div>
-        <form v-on:submit="onSubmitForm">
-            <input type="text" v-model="value" ref="answer">
-            <button type="submit">입력</button>
-        </form>
-        <div>{{result}}</div>
+        <word-relay start-word="거북이"></word-relay>
+        <word-relay start-word="토끼"></word-relay>
+        <word-relay start-word="사슴"></word-relay>
     </div>
 </body>
+
 <script>
-    const app = new Vue({
-        el: "#root",
-        data:{
-            word:"호룡",
-            value:"",
-            result:"",
+    Vue.component('word-relay', { // global component
+        template: `
+        <div>
+            <div>{{word}}</div>
+            <form v-on:submit="onSubmitForm">
+                <input type="text" v-model="value" ref="answer">
+                <button type="submit">입력</button>
+            </form>
+            <div>{{result}}</div>
+        </div>
+        `,
+        props:['startWord'],
+        data(){
+            return {
+                word:this.startWord,
+                value:"",
+                result:"",
+            };
         },
         methods:{
             onSubmitForm(e) {
@@ -42,4 +52,16 @@
         }
     })
 </script>
+
+<script>
+    const app = new Vue({
+        el: "#root",
+    })
+</script>
+
+<!-- 스크립트 태그가 엄청 많아지면...? -->
+<!-- 스크립트 관리의 어려움 -> 순서, 서로간에 끼치는 영향 등등 신경씀 -->
+<!-- webpack로 모든 스크립트를 하나로 합치자 -->
+<!-- 스크립트 여러개 쓰는거보다 웹팩 쓰는 난이도가 쉽다? -> 웹팩 사용 -->
+
 </html>

@@ -3,8 +3,7 @@
 
 <template>
 
-<!-- 
-Vue component
+<!-- Vue component
 js 인데 조금 형식을 바꾼것 
 -->
 
@@ -12,7 +11,7 @@ js 인데 조금 형식을 바꾼것
     <div>
         <h1>{{result}}</h1>
         <form v-on:submit="onSubmitForm">
-            <input ref="answer" maxlength="4", v-model="value"/>
+            <input ref="answer" maxlength="4" v-model="value"/>
             <button>입력</button>
         </form>
     </div>
